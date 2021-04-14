@@ -1,8 +1,8 @@
 import pyglet
 import random
-from . import Objects
-from . import imageloads
-from . import config
+import Objects
+import imageloads
+import config
 
 
 def Spawn_Gatherer(x, y, batch=None):

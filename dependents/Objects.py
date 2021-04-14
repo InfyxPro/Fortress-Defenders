@@ -1,6 +1,6 @@
 # This file will hold all of the objects for the game
 import pyglet, math
-from . import config
+import config
 
 
 
