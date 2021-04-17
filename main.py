@@ -2,9 +2,11 @@
 # Created on 4/9/2021 by Dominik Chraca
 
 
-import pyglet, os
-from dependents import config
-from dependents import load
+import pyglet, os, pygame
+import dependents.config as config
+import dependents.load as load
+import dependents.Objects as Objects
+import dependents.controller as controller
 
 #Globals
 dirname = os.path.dirname(os.path.abspath(__file__))
@@ -25,6 +27,10 @@ def on_draw():
     counter.draw()
 
 def update(dt):
+
+    for event in pygame.event.get(): # Need this to update pygame controller
+            pass
+
     for obj in game_objects:
         obj.update(dt)
 
@@ -38,6 +44,8 @@ def update(dt):
 
 if __name__ == '__main__':
     game_objects.append(load.Spawn_ArcanBolt(main_batch))
+
+    mainControl = controller.Controllers()
 
     # Update the game 120 times per second
     pyglet.clock.schedule_interval(update, 1 / config.MAXFPS)

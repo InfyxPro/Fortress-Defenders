@@ -1,8 +1,8 @@
 import pyglet
 import random
-import Objects
-import imageloads
-import config
+from . import Objects
+from . import imageloads
+from . import config
 
 
 def Spawn_Gatherer(x, y, batch=None):
@@ -16,6 +16,11 @@ def Spawn_Gatherer(x, y, batch=None):
 def Spawn_ArcanBolt(batch=None):
     ArcaneBolt = Objects.Projectile(imageloads.ArcaneBolt_Animation[0],config.WIDTH/2,config.HEIGHT/2,config.PI*5/3,0,150,100,batch=batch)
     ArcaneBolt.scale = 0.2
+    return ArcaneBolt
+
+def Spawn_Explosion(batch=None):
+    ArcaneBolt = Objects.Projectile(imageloads.FireExplosion_Animation[0],config.WIDTH/2,config.HEIGHT/2,0,0,150,0,batch=batch, duration = imageloads.FireExplosion_Animation[0].get_duration()*1.4)
+    ArcaneBolt.scale = 1
     return ArcaneBolt
 
 

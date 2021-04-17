@@ -37,7 +37,7 @@ def image_compiler(path):
 
 # This function takes a list of images and creates a gif. 
 # Some info:: DataFrame = [Durration, DownFrames, UpFrames, RightFrames, LeftFrames]]
-def animation_maker(images, DataFrame = [], isDyingFrame = 0):
+def animation_maker(images, DataFrame = [], isDyingFrame = 0, loop=True):
     animationList = []
 
     if isDyingFrame == 0:
@@ -45,12 +45,12 @@ def animation_maker(images, DataFrame = [], isDyingFrame = 0):
         for i in range(1,4):
             (start,end) = DataFrame[i]
             currentFrames = images[start:end+1]
-            ani = pyglet.image.Animation.from_image_sequence(currentFrames, duration=duration, loop=True)
+            ani = pyglet.image.Animation.from_image_sequence(currentFrames, duration=duration, loop=loop)
             animationList.append(ani)
     else:
         #Use isDyingFrame as the duration for the DyingFrame
         duration = isDyingFrame
-        ani = pyglet.image.Animation.from_image_sequence(images, duration=duration, loop=True)
+        ani = pyglet.image.Animation.from_image_sequence(images, duration=duration, loop=loop)
         animationList.append(ani)
     return animationList
     
@@ -94,6 +94,9 @@ WarriorSwordPathdie = os.path.join(WarriorSwordPath,"die")
 
 #Projectiles
 ArcaneBolt_path = os.path.join(dirname,"Arcane_Effect","bestone")
+
+#FireExplosion
+FireExplosion_path = os.path.join(dirname,"FireExplosion")
 
 
 
@@ -153,6 +156,10 @@ WarriorHandsstillImages = [WarriorSwordAttackImages[0],WarriorSwordAttackImages[
 #Arcane_bolt
 ArcaneBolt_Images = image_compiler(ArcaneBolt_path)
 ArcaneBolt_Animation = animation_maker(ArcaneBolt_Images, isDyingFrame = 0.1)
+
+#FireExplosion
+FireExplosion_Images = image_compiler(FireExplosion_path)
+FireExplosion_Animation = animation_maker(FireExplosion_Images, isDyingFrame = 0.01, loop = False)
 
 # To print the Image files
 if __name__ == '__main__':
